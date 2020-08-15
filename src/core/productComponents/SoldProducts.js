@@ -16,21 +16,27 @@ const SoldProcts = () => {
 
     const loadProductsBySell = () =>{
         getProducts('sold').then(data =>{
-          if(data.error){
-            setError(data.error)
+          if(!data || data.error){
+            setError(true)
           }else{
             setProductsBySell(data)
           }
         })
+      .catch((error) => {
+        setError(true);
+      })
     }
 
     const loadProductsByArrival = () =>{
       getProducts('createdAt').then(data =>{
-        if(data.error){
-          setError(data.error)
+        if(!data || data.error){
+          setError(true)
         }else{
           setProductsByArrival(data)
         }
+      })
+      .catch((error) => {
+        setError(true);
       })
   }
 
